@@ -67,8 +67,30 @@ class Ability:
 class Weapon(Ability):
     # Returns a random value between one half to the full attack power of the weapon .
     def attack(self):
-        
+        attack_weapon_damage = random.randint(seld.attack_weapon_damage // 2, self.attack_weapon_damage)
+        return attack_weapon_damage
 
+class Team:
+    # Initate resources
+    def __init__(self, team_name):
+        self.name = team_name
+        self.heroes = list()
+
+    # Add hero objects to heroes list
+    def add_hero(self, hero):
+        self.heroes.append(hero)
+
+    # Remove hero from heroes list - if Hero not found, return 0 .
+    def remove_hero(self, name):
+        if hero == name in self.heroes:
+            self.heroes.remove(hero)
+        else:
+            return 0
+
+    # Print out all heroes to console.
+    def view_all_heroes(self):
+        for hero in self.heroes:
+            print(hero.name)
 
 
 
