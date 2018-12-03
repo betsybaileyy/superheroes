@@ -1,28 +1,24 @@
+
+# Instantiating the Hero class and defining the variables that our hero will need.
 class Hero:
     def __init__(self, name, starting_health=100):
         self.name = name
         self.starting_health = starting_health
         self.current_health = starting_health
         self.abilities = list()
-
         pass
 
-
+# Adds an ability to a list of abilities.
     def add_ability(self, ability):
-        seld.ability.append(ability)
+        self.abilities.append(ability)
         pass
 
     def attack(self):
-        total = 0
-        for ability in abilities:
-            total += ability.attack()
-        return total
         '''
         Calculates damage from list of abilities.
-
         This method should call Ability.attack()
         on every ability in self.abilities and
-        return the total.
+        return the totalself.
         '''
         pass
 
@@ -31,39 +27,8 @@ class Hero:
         This method should update self.current_health
         with the damage that is passed in.
         '''
-        pass
-
-    def is_alive(self):
-        '''
-        This function will
-        return true if the hero is alive
-        or false if they are not.
-        '''
-        pass
-
-    def fight(self, opponent):
-        '''
-        Runs a loop to attack the opponent until someone dies.
-        '''
-        pass
-
-class Ability:
-    def __init__(self, name, max_damage):
-        '''
-        Initialize the values passed into this
-        method as instance variables.
-         '''
-        pass
-
-    def attack(self):
-        '''
-        Return a random attack value
-        between 0 and max_damage.
-        '''
-        pass
 
 
-if __name__ == "__main__":
-    # If you run this file from the terminal
-    # this block is executed.
-    pass
+    coolHero = Hero("anna")
+
+    print hero.attack()
