@@ -11,24 +11,28 @@ class Hero:
 # Adds an ability to a list of abilities.
     def add_ability(self, ability):
         self.abilities.append(ability)
-        pass
 
+# Calculates damage from a list of abilities.
     def attack(self):
-        '''
-        Calculates damage from list of abilities.
-        This method should call Ability.attack()
-        on every ability in self.abilities and
-        return the totalself.
-        '''
-        pass
+        attack_total = 0
+        for i in self.abilities:
+            attack_damage += i.attack()
+        return attack_damage
 
+# Updates self.current_health with the damage that is passed in.
     def take_damage(self, damage):
-        '''
-        This method should update self.current_health
-        with the damage that is passed in.
-        '''
+        self.current_health -= damage
+        if self.current_health <= 0
+            self.deaths += 1
+        return self.current_health
 
+# Checking to see if the hero is alive or not.
+    def is_alive(self):
+        if self.current_health > 0:
+            return True
+        else:
+            return False
 
-    coolHero = Hero("anna")
-
-    print hero.attack()
+# Running a loop to make the hero attack their opponent until one dies
+    def fight(self, opponent):
+        print(fighting)
