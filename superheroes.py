@@ -7,37 +7,62 @@ class Hero:
         self.starting_health = starting_health
         self.current_health = starting_health
         self.abilities = list()
+        self.armor = list()
         self.deaths = 0
         self.damage = 0
         self.kills = 0
-        pass
 
-# Adds an ability to a list of abilities.
+    # Adds an ability to a list of abilities.
     def add_ability(self, ability):
         self.abilities.append(ability)
 
-# Calculates damage from a list of abilities.
+    # Adds armor to list of armor.
+    def add_armor(self, armor):
+        self.armor.append(armor)
+
+    # Runs the block method on each piece of armor and calculates the total defense.
+    def defend(self):
+        total_defense = 0
+        if self.current_health == 0:
+            return 0
+        else:
+            for armor in self.armors:
+                total_defense += armor.defense()
+                return total_defense
+
+    # Calculates damage from a list of abilities.
     def attack(self):
         attack_total_damage = 0
         for i in self.abilities:
             attack_total_damage += i.attack()
         return attack_total_damage
 
-# Updates self.current_health with the damage that is passed in.
+    # Updates self.current_health with the damage that is passed in.
     def take_damage(self, damage):
         self.current_health -= damage
         if self.current_health <= 0:
             self.damage += 1
         return self.current_health
 
-# Checking to see if the hero is alive or not.
+    # Runs the block method on each piece of armor and calculates the total defense.
+    def defend(self):
+        blocks = 0
+        for blocks in self.armor:
+            blocks +=
+
+
+    # Checking to see if the hero is alive or not.
     def is_alive(self):
         if self.current_health > 0:
             return True
         else:
             return False
 
-# Running a loop to make the hero attack their opponent until one dies
+    # Adds the number of kills to self.kills.
+    def add_kill(self, num_kills):
+        self.kills += num_kills
+
+    # Running a loop to make the hero attack their opponent until one dies.
     def fight(self, opponent):
         print("fighting")
         while self.is_alive() == True and opponent.is_alive() == True:
@@ -65,9 +90,14 @@ class Ability:
         return attack_damage
 
 class Weapon(Ability):
-    # Returns a random value between one half to the full attack power of the weapon .
+    # Initalizing the starting values.
+    def __init__(self, name, attack_weapon_damage):
+        self.name = name
+        self.attack_weapon_damage = attack_weapon_damage
+
+    # Returns a random value between one half to the full attack power of the weapon.
     def attack(self):
-        attack_weapon_damage = random.randint(seld.attack_weapon_damage // 2, self.attack_weapon_damage)
+        attack_weapon_damage = random.randint(self.attack_weapon_damage // 2, self.attack_weapon_damage)
         return attack_weapon_damage
 
 class Team:
@@ -80,7 +110,7 @@ class Team:
     def add_hero(self, hero):
         self.heroes.append(hero)
 
-    # Remove hero from heroes list - if Hero not found, return 0 .
+    # Remove hero from heroes list - if Hero not found, return 0.
     def remove_hero(self, name):
         if hero == name in self.heroes:
             self.heroes.remove(hero)
@@ -92,16 +122,15 @@ class Team:
         for hero in self.heroes:
             print(hero.name)
 
+class Armor:
+    # Instantiating name and defense strength.
+    def __init__(self, name, max_block):
+        self.name = name
+        self.max_block = max_block
 
-
-
-
-
-
-
-
-
-
+    # Returns a random value between 0 and the initialized max_block strength.
+    def block(self):
+        return random.randint(0, self.max_block)
 
 
 if __name__ == "__main__":
