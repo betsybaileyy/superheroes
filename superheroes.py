@@ -32,7 +32,7 @@ class Hero:
         else:
             for armor in self.armor:
                 total_defense += armor.block()
-                return total_defense
+        return total_defense
 
     # Calculates damage from a list of abilities.
     def attack(self):
@@ -86,8 +86,8 @@ class Ability:
 
     # Returns an attack value between 0 and the full attack.
     def attack(self):
-        attack_damage = random.randint(self.attack_strength // 2, self.attack_strength)
-        return attack_damage
+        return random.randint(0, self.attack_strength)
+
 
 class Weapon(Ability):
     # Initalizing the starting values.
@@ -112,10 +112,14 @@ class Team:
 
     # Remove hero from heroes list - if Hero not found, return 0.
     def remove_hero(self, name):
-        if hero == name in self.heroes:
-            self.heroes.remove(hero)
-        else:
+        if len(self.heroes) == 0:
             return 0
+        for hero in self.heroes:
+            if hero.name == name:
+                self.heroes.remove(hero)
+            else:
+                print("did not find")
+                return 0
 
     # Print out all heroes to console.
     def view_all_heroes(self):
@@ -233,37 +237,37 @@ class Arena:
         self.team_one.stats()
         self.team_two.stats()
 
-if __name__ == "__main__":
-    arena = Arena()
-    arena.build_team_one()
-    arena.build_team_two()
-    arena.team_battle()
-    arena.show_stats()
-
 # if __name__ == "__main__":
-#     game_is_running = True
-#
-#     # Instantiate Game Arena
 #     arena = Arena()
-#
-#     #Build Teams
 #     arena.build_team_one()
 #     arena.build_team_two()
-#
-#     while game_is_running:
-#
-#         arena.team_battle()
-#         arena.show_stats()
-#         play_again = input("Play Again? Y or N: ")
-#
-#         #Check for Player Input
-#         if play_again.lower() == "n":
-#             game_is_running = False
-#
-#         else:
-#             #Revive heroes to play again
-#             arena.team_one.revive_heroes()
-#             arena.team_two.revive_heroes()
+#     arena.team_battle()
+#     arena.show_stats()
+
+if __name__ == "__main__":
+    game_is_running = True
+
+    # Instantiate Game Arena
+    arena = Arena()
+
+    #Build Teams
+    arena.build_team_one()
+    arena.build_team_two()
+
+    while game_is_running:
+
+        arena.team_battle()
+        arena.show_stats()
+        play_again = input("Play Again? Y or N: ")
+
+        #Check for Player Input
+        if play_again.lower() == "n":
+            game_is_running = False
+
+        else:
+            #Revive heroes to play again
+            arena.team_one.revive_heroes()
+            arena.team_two.revive_heroes()
 
 # if __name__ == "__main__":
 #     hero = Hero("Wonder Woman")
