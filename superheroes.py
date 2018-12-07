@@ -196,19 +196,41 @@ class Area:
 
     # Allows user to create team one.
     def build_team_one(self):
-        
+        team_one_name = input("Superheroes, Unite! Give your superteam a name: ")
+        team_one = Team(team_one_name)
+        num_heroes_team_one = int(input("How many heroes are on your team? Please give a number value: "))
+        while num_heroes_team_one > 0:
+            hero = self.create_hero()
+            num_heroes_team_one -= 1
+            team.add_hero(hero)
+        return team_one
 
     # Allows user to create team two.
     def build_team_two(self):
-
+        team_two_name = input("Superheroes, Unite! Give your superteam a name: ")
+        team_two = Team(team_two_name)
+        num_heroes_team_two = int(input("How many heroes are on your team? Please give a number value: "))
+        while num_heroes_team_two > 0:
+            hero = self.create_hero()
+            num_heroes_team_two -= 1
+            team.add_hero(hero)
+        return team_two
 
     # Allows user to battle teams together.
     def team_battle(self):
-
+        while self.team_one.alive_heroes() and self.team_two.alive_heroes():
+            self.team_one.attack(self.team_two)
+            self.team_two.attack(self.team_one)
+        if len(self.team_one.heroes) <= 0:
+            print("Team {team_one} has won the battle.")
+        else:
+            print("Team {team_two} has won the battle.")
 
     # Prints battle statistics to console.
     def show_stats(self):
-
+        print("Here are your statistics: ")
+        self.team_one.stats()
+        seld.team_two.stats()
 
 
 
