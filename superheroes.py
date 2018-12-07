@@ -20,6 +20,14 @@ class Hero:
     def add_armor(self, armor):
         self.armor.append(armor)
 
+    # Adds weapon object passed in as an argument to the list of abilities (that already exists.)
+    def add_weapon(self, weapon):
+        self.abilities.append(weapon)
+    #
+    # # This method will add the armor object that is passed in to this method to the list of armor objects (defined in the initalizer.)
+    # def add_armor(self, armor):
+    #     self.armor.append(armor)
+
     # Runs the block method on each piece of armor and calculates the total defense.
     def defend(self):
         total_defense = 0
@@ -152,6 +160,48 @@ class Armor:
     # Returns a random value between 0 and the initialized max_block strength.
     def block(self):
         return random.randint(0, self.max_block)
+
+class Area:
+    # Declaring Variables.
+    def __init__(self):
+        self.team_one = None
+        self.team_two = None
+
+    # Allows user to create an ability.
+    def create_ability(self):
+        ability_name = input("Name an ability for your superhero: ")
+        ability_damage = input("How powerful is this ability? Please give a number value : ")
+        ability = Ability(ability_name, ability_damage)
+        return ability
+
+    # Allows user to create a weapon.
+    def create_weapon(self):
+
+
+    # Allows user to create a piece of armor.
+    def create_armor(self):
+
+
+    # Allows user to create a hero.
+    def create_hero(self):
+
+
+    # Allows user to create team one.
+    def build_team_one(self):
+
+
+    # Allows user to create team two.
+    def build_team_two(self):
+
+
+    # Allows user to battle teams together.
+    def team_battle(self):
+
+
+    # Prints battle statistics to console.
+    def show_stats(self):
+
+
 
 
 if __name__ == "__main__":
