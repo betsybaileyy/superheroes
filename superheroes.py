@@ -170,17 +170,23 @@ class Area:
     # Allows user to create an ability.
     def create_ability(self):
         ability_name = input("Name an ability for your superhero: ")
-        ability_damage = input("How powerful is this ability? Please give a number value : ")
+        ability_damage = int(input("How powerful is this ability? Please give a number value : "))
         ability = Ability(ability_name, ability_damage)
         return ability
 
     # Allows user to create a weapon.
     def create_weapon(self):
-
+        weapon_name = input("Give your hero a weapon to use: ")
+        weapon_damage = int(input("How powerful is this weapon? Please give a number value: "))
+        weapon = Weapon(weapon_name, weapon_damage)
+        return weapon
 
     # Allows user to create a piece of armor.
     def create_armor(self):
-
+        armor_name = input("Let's give yor hero armor for protection. What armor would you like to give them? : ")
+        armor_defense = int(input("How protective is this armor? Please give a numerical value: "))
+        armor = Armor(armor_name, armor_defense)
+        return armor
 
     # Allows user to create a hero.
     def create_hero(self):
