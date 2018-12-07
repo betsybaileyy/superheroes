@@ -26,8 +26,8 @@ class Hero:
         if self.current_health == 0:
             return 0
         else:
-            for armor in self.armors:
-                total_defense += armor.defense()
+            for armor in self.armor:
+                total_defense += armor.block()
                 return total_defense
 
     # Calculates damage from a list of abilities.
@@ -42,7 +42,7 @@ class Hero:
         self.current_health -= damage
         if self.current_health <= 0:
             self.damage += 1
-        return self.current_healths
+        return self.current_health
 
     # Checking to see if the hero is alive or not.
     def is_alive(self):
@@ -117,12 +117,20 @@ class Team:
         for hero in self.heroes:
             print(hero.name)
 
+    # List of team's alive heroes.
+    def alive_heroes(self):
+        alive_heroes = []
+        for hero in self.heroes:
+            if hero.is_alive():
+                alive_heroes.append(hero)
+        return alive_heroes
+
     # Randomly select a living hero from each team and have them fight until one or both teams have no survivng heroes.
     def attack(self, other_team):
         while len(self.alive_heroes()) > 0 and len(other_team.alive_heroes()) > 0:
             ran_hero = random.choice(self.alive_heroes())
             ran_opponent = random.choice(other_team.alive_heroes())
-            ran_hero.fight(ran_opponent
+            ran_hero.fight(ran_opponent)
 
     # Resets all heroes health to their originial starting value.
     def revive_heroes(self, health=100):
