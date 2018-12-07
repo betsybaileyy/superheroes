@@ -42,14 +42,7 @@ class Hero:
         self.current_health -= damage
         if self.current_health <= 0:
             self.damage += 1
-        return self.current_health
-
-    # Runs the block method on each piece of armor and calculates the total defense.
-    def defend(self):
-        blocks = 0
-        for blocks in self.armor:
-            blocks +=
-
+        return self.current_healths
 
     # Checking to see if the hero is alive or not.
     def is_alive(self):
@@ -103,12 +96,12 @@ class Weapon(Ability):
         return attack_weapon_damage
 
 class Team:
-    # Initate resources
+    # Initate resources.
     def __init__(self, team_name):
         self.name = team_name
         self.heroes = list()
 
-    # Add hero objects to heroes list
+    # Add hero objects to heroes list.
     def add_hero(self, hero):
         self.heroes.append(hero)
 
