@@ -124,11 +124,16 @@ class Team:
             ran_opponent = random.choice(other_team.alive_heroes())
             ran_hero.fight(ran_opponent
 
-    # This method should reset all heroes health to their originial starting value.
+    # Resets all heroes health to their originial starting value.
     def revive_heroes(self, health=100):
         for hero in self.heroes:
             hero.current_health = health
             return hero.current_health
+
+    # Prints the ratio of kills/deaths for each member of the team to console.
+    def stats(self):
+        for hero in self.heroes:
+            print("hero {hero.name} has killed {hero.kills} opponents and has {hero.deaths} deaths.")
 
 class Armor:
     # Instantiating name and defense.
