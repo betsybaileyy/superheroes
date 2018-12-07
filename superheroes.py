@@ -146,7 +146,7 @@ class Team:
     # Prints the ratio of kills/deaths for each member of the team to console.
     def stats(self):
         for hero in self.heroes:
-            print("hero" + self.name + " has killed " + self.kills + " opponents and has " + self.deaths + " deaths.")
+            print("hero" + hero.name + " has killed " + str(hero.kills) + " opponents and has " + str(hero.deaths) + " deaths.")
 
 class Armor:
     # Instantiating name and defense.
