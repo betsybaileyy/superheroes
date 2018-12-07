@@ -23,10 +23,6 @@ class Hero:
     # Adds weapon object passed in as an argument to the list of abilities (that already exists.)
     def add_weapon(self, weapon):
         self.abilities.append(weapon)
-    #
-    # # This method will add the armor object that is passed in to this method to the list of armor objects (defined in the initalizer.)
-    # def add_armor(self, armor):
-    #     self.armor.append(armor)
 
     # Runs the block method on each piece of armor and calculates the total defense.
     def defend(self):
@@ -41,8 +37,9 @@ class Hero:
     # Calculates damage from a list of abilities.
     def attack(self):
         attack_total_damage = 0
-        for i in self.abilities:
-            attack_total_damage += i.attack()
+        for ability in self.abilities:
+            attack_total_damage += ability.attack()
+
         return attack_total_damage
 
     # Updates self.current_health with the damage that is passed in.
@@ -68,18 +65,18 @@ class Hero:
         print("fighting")
         while self.is_alive() == True and opponent.is_alive() == True:
             self.take_damage(opponent.attack())
-            print("{self.name} is attacking {opponent.name}")
+            print(self.name + " is attacking " + opponent.name)
             opponent.take_damage(self.attack())
-            print("{opponent.name} is attacking {self.name}")
+            print( opponent.name + " is attacking " + self.name )
 
             if self.is_alive() == False:
                 self.deaths += 1
                 opponent.kills += 1
-                print("The HERO has died")
+                print(self.name + " has died")
             elif opponent.is_alive() == False:
                 opponent.deaths += 1
                 self.kills += 1
-                print("the OPPONENT has died")
+                print(opponent.name + " has died")
 
 class Ability:
     # Initializing the starting values.
@@ -149,7 +146,7 @@ class Team:
     # Prints the ratio of kills/deaths for each member of the team to console.
     def stats(self):
         for hero in self.heroes:
-            print("hero {hero.name} has killed {hero.kills} opponents and has {hero.deaths} deaths.")
+            print("hero" + self.name + " has killed " + self.kills + " opponents and has " + self.deaths + " deaths.")
 
 class Armor:
     # Instantiating name and defense.
@@ -161,7 +158,7 @@ class Armor:
     def block(self):
         return random.randint(0, self.max_block)
 
-class Area:
+class Arena:
     # Declaring Variables.
     def __init__(self):
         self.team_one = None
@@ -171,7 +168,8 @@ class Area:
     def create_ability(self):
         ability_name = input("Name an ability for your superhero: ")
         ability_damage = int(input("How powerful is this ability? Please give a number value : "))
-        return Ability(ability_name, ability_damage)
+        ability = Ability(ability_name, ability_damage)
+        return ability
 
     # Allows user to create a weapon.
     def create_weapon(self):
@@ -189,61 +187,94 @@ class Area:
     def create_hero(self):
         hero_name = input("Name your mighty hero: ")
         hero = Hero(hero_name)
-        hero.add_ability(self.create_ability)
-        hero.add_weapon(self.create_weapon)
-        hero.add_armor(self.create_armor)
+        hero.add_ability(self.create_ability())
+        hero.add_weapon(self.create_weapon())
+        hero.add_armor(self.create_armor())
         return hero
 
     # Allows user to create team one.
     def build_team_one(self):
         team_one_name = input("Superheroes, Unite! Give your superteam a name: ")
-        team_one = Team(team_one_name)
+        self.team_one = Team(team_one_name)
+        print(self.team_one)
         num_heroes_team_one = int(input("How many heroes are on your team? Please give a number value: "))
         while num_heroes_team_one > 0:
             hero = self.create_hero()
             num_heroes_team_one -= 1
-            team.add_hero(hero)
-        return team_one
+            self.team_one.add_hero(hero)
+        return self.team_one
 
     # Allows user to create team two.
     def build_team_two(self):
-        team_two_name = input("Superheroes, Unite! Give your superteam a name: ")
-        team_two = Team(team_two_name)
-        num_heroes_team_two = int(input("How many heroes are on your team? Please give a number value: "))
+        team_two_name = input("Superheroes, Unite! Give your second superteam a name: ")
+        self.team_two = Team(team_two_name)
+        num_heroes_team_two = int(input("How many heroes are on your second team? Please give a number value: "))
         while num_heroes_team_two > 0:
             hero = self.create_hero()
             num_heroes_team_two -= 1
-            team.add_hero(hero)
-        return team_two
+            self.team_two.add_hero(hero)
+        return self.team_two
 
     # Allows user to battle teams together.
     def team_battle(self):
+        print(self.team_one)
+        # self.team_one.attack(self.team_two)
         while self.team_one.alive_heroes() and self.team_two.alive_heroes():
             self.team_one.attack(self.team_two)
             self.team_two.attack(self.team_one)
         if len(self.team_one.heroes) <= 0:
-            print("Team {team_one} has won the battle.")
+            print("Team ONE has won the battle.")
         else:
-            print("Team {team_two} has won the battle.")
+            print("Team TWO has won the battle.")
 
     # Prints battle statistics to console.
     def show_stats(self):
         print("Here are your statistics: ")
         self.team_one.stats()
-        seld.team_two.stats()
-
-
+        self.team_two.stats()
 
 if __name__ == "__main__":
-    hero = Hero("Wonder Woman")
-    print(hero.attack())
-    ability = Ability("Divine Speed", 20)
-    hero.add_ability(ability)
-    print(hero.attack())
-    new_ability = Ability("Super Strength", 30)
-    hero.add_ability(new_ability)
-    print(hero.attack())
-    hero2 = Hero("Shania Twain")
-    ability2 = Ability("Smarts", 800)
-    hero2.add_ability(ability2)
-    hero.fight(hero2)
+    arena = Arena()
+    arena.build_team_one()
+    arena.build_team_two()
+    arena.team_battle()
+    arena.show_stats()
+
+# if __name__ == "__main__":
+#     game_is_running = True
+#
+#     # Instantiate Game Arena
+#     arena = Arena()
+#
+#     #Build Teams
+#     arena.build_team_one()
+#     arena.build_team_two()
+#
+#     while game_is_running:
+#
+#         arena.team_battle()
+#         arena.show_stats()
+#         play_again = input("Play Again? Y or N: ")
+#
+#         #Check for Player Input
+#         if play_again.lower() == "n":
+#             game_is_running = False
+#
+#         else:
+#             #Revive heroes to play again
+#             arena.team_one.revive_heroes()
+#             arena.team_two.revive_heroes()
+
+# if __name__ == "__main__":
+#     hero = Hero("Wonder Woman")
+#     print(hero.attack())
+#     ability = Ability("Divine Speed", 20)
+#     hero.add_ability(ability)
+#     print(hero.attack())
+#     new_ability = Ability("Super Strength", 30)
+#     hero.add_ability(new_ability)
+#     print(hero.attack())
+#     hero2 = Hero("Shania Twain")
+#     ability2 = Ability("Smarts", 800)
+#     hero2.add_ability(ability2)
+#     hero.fight(hero2)
