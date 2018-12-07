@@ -117,8 +117,21 @@ class Team:
         for hero in self.heroes:
             print(hero.name)
 
+    # Randomly select a living hero from each team and have them fight until one or both teams have no survivng heroes.
+    def attack(self, other_team):
+        while len(self.alive_heroes()) > 0 and len(other_team.alive_heroes()) > 0:
+            ran_hero = random.choice(self.alive_heroes())
+            ran_opponent = random.choice(other_team.alive_heroes())
+            ran_hero.fight(ran_opponent
+
+    # This method should reset all heroes health to their originial starting value.
+    def revive_heroes(self, health=100):
+        for hero in self.heroes:
+            hero.current_health = health
+            return hero.current_health
+
 class Armor:
-    # Instantiating name and defense strength.
+    # Instantiating name and defense.
     def __init__(self, name, max_block):
         self.name = name
         self.max_block = max_block
