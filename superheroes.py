@@ -67,13 +67,15 @@ class Hero:
         print("fighting")
         while self.is_alive() == True and opponent.is_alive() == True:
             self.take_damage(opponent.attack())
+            print("{self.name} is attacking {opponent.name}")
             opponent.take_damage(self.attack())
+            print("{opponent.name} is attacking {self.name}")
 
             if self.is_alive() == False:
                 self.deaths += 1
                 opponent.kills += 1
                 print("The HERO has died")
-            if opponent.is_alive() == False:
+            elif opponent.is_alive() == False:
                 opponent.deaths += 1
                 self.kills += 1
                 print("the OPPONENT has died")
