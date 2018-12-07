@@ -88,7 +88,6 @@ class Ability:
     def attack(self):
         return random.randint(0, self.attack_strength)
 
-
 class Weapon(Ability):
     # Initalizing the starting values.
     def __init__(self, name, attack_weapon_damage):
@@ -237,13 +236,6 @@ class Arena:
         self.team_one.stats()
         self.team_two.stats()
 
-# if __name__ == "__main__":
-#     arena = Arena()
-#     arena.build_team_one()
-#     arena.build_team_two()
-#     arena.team_battle()
-#     arena.show_stats()
-
 if __name__ == "__main__":
     game_is_running = True
 
@@ -264,21 +256,7 @@ if __name__ == "__main__":
         if play_again.lower() == "n":
             game_is_running = False
 
-        else:
+        elif play_again.lower() == "y":
             #Revive heroes to play again
             arena.team_one.revive_heroes()
             arena.team_two.revive_heroes()
-
-# if __name__ == "__main__":
-#     hero = Hero("Wonder Woman")
-#     print(hero.attack())
-#     ability = Ability("Divine Speed", 20)
-#     hero.add_ability(ability)
-#     print(hero.attack())
-#     new_ability = Ability("Super Strength", 30)
-#     hero.add_ability(new_ability)
-#     print(hero.attack())
-#     hero2 = Hero("Shania Twain")
-#     ability2 = Ability("Smarts", 800)
-#     hero2.add_ability(ability2)
-#     hero.fight(hero2)
